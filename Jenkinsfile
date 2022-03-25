@@ -6,22 +6,22 @@ pipeline {
             steps {
             checkout scm
             }
-        }
+    }
 
-        stage('Build') { 
-            // steps {
-            //     // 
-            // }
-        }
-        stage('Test') { 
-            // steps {
-            //     // 
-            // }
-        }
-        stage('Deploy') { 
-            // steps {
-            //     // 
-            // }
-        }
+        // stage('Build') { 
+        //     steps {
+        //         // 
+        //     }
+        // }
+        // stage('Test') { 
+        //     steps {
+        //         // 
+        //     }
+        // }
+        // stage('Deploy') { 
+        //     steps {
+        //         // 
+        //     }
+        // }
     }
 }
