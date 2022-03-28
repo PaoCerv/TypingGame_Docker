@@ -20,8 +20,8 @@ pipeline {
 
           script {      
 
-           sh "echo 'hola mundo'"
-           sh ls -la
+           sh "echo 'hola mundo' 'ls -la'"
+           
 
         }
 
