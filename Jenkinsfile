@@ -14,7 +14,7 @@ pipeline {
                     sh '''
                         whoami
                        docker --version
-                       docker build .
+                       docker build -t examplepao . 
                    '''
                 } 
             }
