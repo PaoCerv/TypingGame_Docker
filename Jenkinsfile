@@ -1,62 +1,31 @@
 pipeline {
+    agent any 
+    stages {
 
-  agent any
-
-  environment {
-
-    appName = "variable"
-
-  }
-
-  stages {
-
-
-
- stage("paso 1"){
-
-     
-
-      steps {
-
-          script {      
-
-           sh "echo 'hola mundo' 'ls -la'"
-           
-
-        }
-
-      }
-
+        stage('Checkout code') {
+            steps {
+            checkout scm
+            }
     }
 
-  }
-
-  post {
-
-      always {          
-
-          deleteDir()
-
-           sh "echo 'fase always'"
-
-      }
-
-      success {
-
-            sh "echo 'fase success'"
-
+        stage('Build') { 
+            steps {
+                script{
+                    sh """
+                        docker build .
+                    """
+                } 
+            }
         }
-
-
-
-      failure {
-
-            sh "echo 'fase failure'"
-
-      }
-
-     
-
-  }
-
-}  
+        // stage('Test') { 
+        //     steps {
+        //         // 
+        //     }
+        // }
+        // stage('Deploy') { 
+        //     steps {
+        //         // 
+        //     }
+        // }
+    }
+}
