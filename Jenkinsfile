@@ -12,8 +12,9 @@ pipeline {
             steps {
                 script{
                     sh '''
+                        whoami
                        docker --version
-                       docker build .
+                       
                    '''
                 } 
             }
