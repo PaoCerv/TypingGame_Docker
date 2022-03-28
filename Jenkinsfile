@@ -13,7 +13,7 @@ pipeline {
                 script{
                     sh '''
                        docker --version
-                       dockerImage = docker.build imagename
+                       docker build .
                    '''
                 } 
             }
