@@ -21,6 +21,7 @@ pipeline {
           script {      
 
            sh "echo 'hola mundo'"
+           sh "ls -la"
 
         }
 
