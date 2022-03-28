@@ -1,32 +1,61 @@
 pipeline {
-    agent any 
-    stages {
 
-        stage('Checkout code') {
-            steps {
-            checkout scm
-            }
-    }
+  agent any
 
-        stage('Build') { 
-            steps {
-                sh
-                'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
-            }
+  environment {
+
+    appName = "variable"
+
+  }
+
+  stages {
+
+
+
+ stage("paso 1"){
+
+     
+
+      steps {
+
+          script {      
+
+           sh "echo 'hola mundo'"
+
         }
-        // stage('Test') { 
-        //     steps {
-        //         // 
-        //     }
-        // }
-        // stage('Deploy') { 
-        //     steps {
-        //         // 
-        //     }
-        // }
+
+      }
+
     }
-}
+
+  }
+
+  post {
+
+      always {          
+
+          deleteDir()
+
+           sh "echo 'fase always'"
+
+      }
+
+      success {
+
+            sh "echo 'fase success'"
+
+        }
+
+
+
+      failure {
+
+            sh "echo 'fase failure'"
+
+      }
+
+     
+
+  }
+
+}  
