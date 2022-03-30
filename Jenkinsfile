@@ -8,13 +8,24 @@ pipeline {
             }
     }
 
+        stage('Connection to AWS') { 
+            steps {
+                script{
+                    sh '''
+                        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 435053451664.dkr.ecr.us-east-2.amazonaws.com
+                        
+                   '''
+                } 
+            }
+        }
         stage('Build') { 
             steps {
                 script{
                     sh '''
-                        whoami
-                       docker --version
-                       docker build -t examplepao . 
+                        
+                       docker build -t typing_game . 
+                       docker tag typing_game:latest 435053451664.dkr.ecr.us-east-2.amazonaws.com/pao_repository:latest
+                       docker push 435053451664.dkr.ecr.us-east-2.amazonaws.com/pao_repository:latest
                    '''
                 } 
             }
