@@ -21,7 +21,7 @@ pipeline {
         stage('Build') { 
             steps {
                 script{
-                    #docker rmi typing_game
+                    
                     sh '''
                         
                        docker build -t typing_game . 
