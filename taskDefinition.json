@@ -1,0 +1,30 @@
+{
+    "family": "sample-fargate", 
+    "networkMode": "awsvpc", 
+    "containerDefinitions": [
+        {
+            "name": "typing_game2", 
+            "image": "435053451664.dkr.ecr.us-west-1.amazonaws.com/mentorship_repository:latest", 
+            "portMappings": [
+                {
+                    "containerPort": 8080, 
+                    "hostPort": 80, 
+                    "protocol": "tcp"
+                }
+            ], 
+            "essential": true, 
+            "entryPoint": [
+                "sh",
+		"-c"
+            ], 
+            "command": [
+                
+            ]
+        }
+    ], 
+    "requiresCompatibilities": [
+        "FARGATE"
+    ], 
+    "cpu": "256", 
+    "memory": "512"
+}

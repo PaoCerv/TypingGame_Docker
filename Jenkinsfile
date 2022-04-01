@@ -33,12 +33,14 @@ pipeline {
             }
         }
 
-        stage('Create repository') { 
+        stage('Create cluster') { 
             steps {
                 script{
                     sh '''
                         
-                       aws ecs create-cluster --cluster-name MyClusterPao
+                       aws ecs create-cluster --cluster-name MyClusterPao fargate-cluster
+                       aws ecs register-task-definition --cli-input-json file://$HOME/tasks/taskDefinition.json
+                       ecs-cli configure --cluster typinggame3 --default-launch-type FARGATE --config-name tutorial --region us-west-1
                    '''
                 } 
             }
