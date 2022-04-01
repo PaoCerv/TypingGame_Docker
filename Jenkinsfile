@@ -39,7 +39,7 @@ pipeline {
                     sh '''
                         
                        aws ecs create-cluster --cluster-name MyClusterPao fargate-cluster
-                       aws ecs register-task-definition --cli-input-json file://$HOME/tasks/taskDefinition.json
+                       aws ecs register-task-definition --cli-input-json file:taskDefinition.json
                        ecs-cli configure --cluster typinggame3 --default-launch-type FARGATE --config-name tutorial --region us-west-1
                    '''
                 } 
