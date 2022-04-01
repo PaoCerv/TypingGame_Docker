@@ -38,11 +38,24 @@ pipeline {
                 script{
                     sh '''
                         
-                       aws ecs create-cluster --cluster-name MyClusterPao 
-                       aws ecs register-task-definition --cli-input-json file:taskDefinition.json
-                       ecs-cli configure --cluster typinggame3 --default-launch-type FARGATE --config-name tutorial --region us-west-1
+                       aws ecs create-cluster --cluster-name MyClusterPao2
+                       
+                       
                    '''
                 } 
+            }
+        }
+
+        stage('Test ecs pluggin') {
+        agent {
+            ecs {
+                inheritFrom 'label-of-my-preconfigured-template'
+                cpu 2048
+                memory 4096
+                image '435053451664.dkr.ecr.us-west-1.amazonaws.com/mentorship_repository:latest'
+                logDriver 'fluentd'
+                logDriverOptions([[name: 'foo', value:'bar'], [name: 'bar', value: 'foo']])
+                portMappings([[containerPort: 8080, hostPort: 8080, protocol: 'tcp'], [containerPort: 443, hostPort: 443, protocol: 'tcp']])
             }
         }
 
