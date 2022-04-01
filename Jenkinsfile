@@ -47,20 +47,21 @@ pipeline {
         }
 
         stage('Test ecs pluggin') {
-        agent {
-            ecs {
-                inheritFrom 'label-of-my-preconfigured-template'
-                cpu 2048
-                memory 4096
-                image '435053451664.dkr.ecr.us-west-1.amazonaws.com/mentorship_repository:latest'
-                logDriver 'fluentd'
-                logDriverOptions([[name: 'foo', value:'bar'], [name: 'bar', value: 'foo']])
-                portMappings([[containerPort: 8080, hostPort: 8080, protocol: 'tcp'], [containerPort: 443, hostPort: 443, protocol: 'tcp']])
+            steps {
+                ecs {
+                    inheritFrom 'label-of-my-preconfigured-template'
+                    cpu 256
+                    memory 512
+                    image '435053451664.dkr.ecr.us-west-1.amazonaws.com/mentorship_repository:latest'
+                    logDriver 'fluentd'
+                    logDriverOptions([[name: 'foo', value:'bar'], [name: 'bar', value: 'foo']])
+                    portMappings([[containerPort: 8080, hostPort: 8080, protocol: 'tcp'], [containerPort: 443, hostPort: 443, protocol: 'tcp']])
             }
         }
 
 
         }
+    
 
 
 
