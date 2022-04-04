@@ -33,18 +33,18 @@ pipeline {
             }
         }
 
-        stage('Create cluster') { 
-            steps {
-                script{
-                    sh '''
+        // stage('Create cluster') { 
+        //     steps {
+        //         script{
+        //             sh '''
                         
-                       aws ecs create-cluster --cluster-name MyCluster
                        
                        
-                   '''
-                } 
-            }
-        }
+                       
+        //            '''
+        //         } 
+        //     }
+        // }
 
         stage('Test ecs pluggin TASK DEFINITION') {
             steps {
