@@ -33,34 +33,19 @@ pipeline {
             }
         }
 
-        // stage('Create cluster') { 
-        //     steps {
-        //         script{
-        //             sh '''
-                        
-                       
-                       
-                       
-        //            '''
-        //         } 
-        //     }
-        // }
-
-        stage('Test ecs pluggin TASK DEFINITION') {
+        stage('Create cluster') { 
             steps {
-                ecs {
-                    inheritFrom 'label-of-my-preconfigured-template'
-                    cpu 256
-                    memory 512
-                    image '435053451664.dkr.ecr.us-west-1.amazonaws.com/mentorship_repository:latest'
-                    logDriver 'fluentd'
-                    logDriverOptions([[name: 'foo', value:'bar'], [name: 'bar', value: 'foo']])
-                    portMappings([[containerPort: 8080, hostPort: 8080, protocol: 'tcp'], [containerPort: 443, hostPort: 443, protocol: 'tcp']])
+                script{
+                    sh '''
+                        
+                       aws ecs create-cluster --cluster-name MyCluster
+                       
+                       
+                   '''
+                } 
             }
         }
 
-
-        }
     
 
 
