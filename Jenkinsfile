@@ -1,3 +1,10 @@
+// import groovy.json.JsonSlurperClassic
+// def jsonParse(def json) {
+
+//     new groovy.json.JsonSlurperClassic().parseText(json)
+
+// }
+
 pipeline {
     agent any 
     stages {
@@ -38,8 +45,10 @@ pipeline {
                 script{
                     sh '''
                         
-                       aws ecs create-cluster --cluster-name MyCluster
-                       
+                        aws ecs create-cluster --cluster-name MyCluster
+                        aws ecs register-task-definition --cli-input-json file://taskDefinition.json
+                        aws ecs create-service --cluster fargate-cluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[ subnet-00d2456e10f182a79],securityGroups=[sg-09528a0b494bd0985],assignPublicIp=ENABLED}"
+
                        
                    '''
                 } 
