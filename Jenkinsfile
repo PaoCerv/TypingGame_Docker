@@ -47,7 +47,7 @@ pipeline {
                         
                         aws ecs create-cluster --cluster-name MyCluster
                         aws ecs register-task-definition --cli-input-json file://taskDefinition.json
-                        aws ecs create-service --cluster MyCluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[ subnet-00d2456e10f182a79],securityGroups=[sg-09528a0b494bd0985],assignPublicIp=ENABLED}"
+                        aws ecs create-service --cluster MyCluster --service-name fargate-service --task-definition sample-fargate:1 --desired-count 1 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[ subnet-00d2456e10f182a79],securityGroups=[sg-00d3ae2d9784e294c],assignPublicIp=ENABLED}"
 
                        
                    '''
